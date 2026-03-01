@@ -1,7 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiDownload, FiExternalLink } from "react-icons/fi";
+import {
+  FiDownload,
+  FiBriefcase,
+  FiAward,
+  FiMapPin,
+  FiCode,
+} from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import styles from "./page.module.css";
 
@@ -34,36 +40,49 @@ export default function ResumePage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Experience</h2>
+          <h2 className={styles.cardTitle}>
+            <FiBriefcase size={18} /> Experience & Internships
+          </h2>
           <div className={styles.entry}>
-            <h3 className={styles.entryTitle}>Full-Stack Developer</h3>
-            <p className={styles.entryMeta}>Company Name · 2023 — Present</p>
+            <h3 className={styles.entryTitle}>Fullstack Cloud Developer (Internship)</h3>
+            <p className={`${styles.entryMeta} ${styles.metaItem}`}>
+              <FiMapPin size={12} /> Depole, Corda Campus Hasselt · May 2024
+            </p>
             <p className={styles.entryDesc}>
-              Building and maintaining web applications using React, Node.js,
-              and cloud services. Leading frontend architecture decisions and
-              mentoring junior developers.
+              Extended the cloud application &quot;Witness&quot; with a focus on scalable architecture and clean code.
+            </p>
+            <p className={`${styles.entryMeta} ${styles.metaItem}`}>
+              <FiCode size={12} /> Tech: React Native, TypeScript, VueJS, PHP, Laravel, Amplify, AWS, Cognito, S3, AppSync, DynamoDB, Lambda
             </p>
           </div>
           <div className={styles.entry}>
-            <h3 className={styles.entryTitle}>Junior Developer</h3>
-            <p className={styles.entryMeta}>Another Company · 2021 — 2023</p>
+            <h3 className={styles.entryTitle}>Fullstack Developer (Internship)</h3>
+            <p className={`${styles.entryMeta} ${styles.metaItem}`}>
+              <FiMapPin size={12} /> Callexcell, Stayen Sint-Truiden · Feb 2017
+            </p>
             <p className={styles.entryDesc}>
-              Developed internal tools and customer-facing features. Worked with
-              Python, Django, and PostgreSQL in an agile team environment.
+              Gained experience with both .NET and PHP projects, optimizing web forms and database connections.
+            </p>
+            <p className={`${styles.entryMeta} ${styles.metaItem}`}>
+              <FiCode size={12} /> Tech: ASP.NET, PHP, (T)SQL, JavaScript, HTML, CSS
             </p>
           </div>
         </div>
 
         <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Education</h2>
+          <h2 className={styles.cardTitle}>
+            <FiAward size={18} /> Education
+          </h2>
           <div className={styles.entry}>
             <h3 className={styles.entryTitle}>
-              BSc Computer Science
+              Bachelor of Applied Computer Science
             </h3>
-            <p className={styles.entryMeta}>University · 2017 — 2021</p>
+            <p className={`${styles.entryMeta} ${styles.metaItem}`}>
+              <FiMapPin size={12} /> PXL University of Applied Sciences, Hasselt · Feb 14 2025
+            </p>
+            <p className={styles.entryMeta}>Major in application development</p>
             <p className={styles.entryDesc}>
               Focused on software engineering, algorithms, and web technologies.
-              Graduated with honours.
             </p>
           </div>
         </div>

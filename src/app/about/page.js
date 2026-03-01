@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import SkillChip from "@/components/ui/SkillChip";
 import { skills } from "@/data/skills";
@@ -18,7 +19,14 @@ export default function AboutPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className={styles.photoPlaceholder}>S</div>
+          <Image
+            src="/images/profile.png"
+            alt="Photo of Symon"
+            width={200}
+            height={200}
+            className={styles.photo}
+            priority
+          />
         </motion.div>
 
         <motion.div
@@ -55,17 +63,27 @@ export default function AboutPage() {
           Skills & Technologies
         </motion.h2>
 
-        {skills.map((group) => (
-          <div key={group.category} className={styles.skillGroup}>
-            <h3 className={styles.skillCategory}>{group.category}</h3>
-            <div className={styles.chips}>
-              {group.items.map((item) => {
-                const idx = chipIndex++;
-                return <SkillChip key={item} label={item} index={idx} />;
-              })}
+        {skills.map((group) => {
+          const Icon = group.icon;
+          return (
+            <div key={group.category} className={styles.skillGroup}>
+              {Icon && (
+                <div className={styles.skillIcon}>
+                  <Icon />
+                </div>
+              )}
+              <div className={styles.skillContent}>
+                <h3 className={styles.skillCategory}>{group.category}</h3>
+                <div className={styles.chips}>
+                  {group.items.map((item) => {
+                    const idx = chipIndex++;
+                    return <SkillChip key={item} label={item} index={idx} />;
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </section>
     </div>
   );

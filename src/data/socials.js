@@ -1,17 +1,12 @@
 export const socials = [
   {
     name: "GitHub",
-    url: "https://github.com/Symon",
+    url: "https://github.com/symonxdd",
     icon: "github",
   },
   {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/symon",
-    icon: "linkedin",
-  },
-  {
     name: "Email",
-    url: "mailto:symon@example.com",
+    url: "mailto:symon.bla@gmail.com",
     icon: "mail",
   },
 ];
