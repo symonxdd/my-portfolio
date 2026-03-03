@@ -44,54 +44,66 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+    <header className={[
+      styles.header,
+      scrolled && styles.scrolled,
+      mobileOpen && styles.mobileOverlayOpen
+    ].filter(Boolean).join(" ")}>
       <div className={styles.container}>
-        {/* Name / Logo — links home */}
-        <Link href="/" className={styles.logo}>
-          Symon
-        </Link>
+        <motion.nav
+          className={styles.pill}
+          initial={false}
+        >
+          {/* Logo / Home Link */}
+          <Link href="/" className={styles.logo}>
+            symon.
+          </Link>
 
-        {/* Floating pill nav — desktop */}
-        <nav className={styles.pill} aria-label="Main navigation">
-          {navLinks.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== "/" && pathname.startsWith(link.href));
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.navLink} ${isActive ? styles.active : ""}`}
-              >
-                {isActive && (
-                  <motion.span
-                    className={styles.activePill}
-                    layoutId="navPill"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                  />
-                )}
-                <span className={styles.navLinkText}>{link.label}</span>
-              </Link>
-            );
-          })}
-        </nav>
+          {/* Vertical Separator */}
+          <div className={styles.separator} />
 
-        {/* Right side: theme toggle + mobile menu button */}
-        <div className={styles.actions}>
-          <ThemeToggle />
-          <button
-            className={styles.menuBtn}
-            onClick={() => setMobileOpen((prev) => !prev)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-          </button>
-        </div>
+          {/* Navigation Links */}
+          <div className={styles.navLinks}>
+            {navLinks.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/" && pathname.startsWith(link.href));
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="navPill"
+                      className={styles.activePill}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className={styles.navLinkText}>{link.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Actions: Theme Toggle + Mobile Menu */}
+          <div className={styles.actions}>
+            <ThemeToggle />
+            <button
+              className={styles.menuBtn}
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            </button>
+          </div>
+        </motion.nav>
       </div>
 
       {/* Mobile overlay */}

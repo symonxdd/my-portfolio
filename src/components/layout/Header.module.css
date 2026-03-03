@@ -6,46 +6,65 @@
   z-index: 100;
   padding: var(--space-md) var(--space-lg);
   transition: padding var(--transition-base);
+  background: transparent;
 }
 
 .header.scrolled {
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
 }
 
 .container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   max-width: var(--max-width);
   margin: 0 auto;
 }
 
-/* ---- Logo ---- */
-.logo {
-  font-weight: 700;
-  font-size: 1.125rem;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  z-index: 101;
-  transition: opacity var(--transition-fast);
-}
-
-.logo:hover {
-  opacity: 0.7;
-}
-
-/* ---- Floating Pill (Desktop) ---- */
+/* ---- Single Integrated Pill ---- */
 .pill {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  padding: 4px;
+  gap: 4px;
+  padding: 6px 12px;
   border-radius: var(--radius-full);
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--nav-bg);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
+  transition: all var(--transition-base);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+.logo:hover {
+  background-color: var(--accent-subtle);
+}
+
+.separator {
+  width: 1px;
+  height: 14px;
+  background-color: var(--text-secondary);
+  opacity: 0.15;
+  margin: 0 2px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .navLink {
@@ -82,12 +101,11 @@
   z-index: 0;
 }
 
-/* ---- Actions (right side) ---- */
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  z-index: 101;
+  gap: 2px;
+  padding-left: 4px;
 }
 
 .menuBtn {
@@ -140,8 +158,18 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
-  .pill {
+
+  .navLinks,
+  .separator {
     display: none;
+  }
+
+  .pill {
+    padding: 6px 8px;
+  }
+
+  .logo {
+    padding: 6px 12px;
   }
 
   .menuBtn {
