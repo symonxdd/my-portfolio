@@ -16,12 +16,18 @@
 }
 
 .thumbnail {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 180px;
   background: var(--accent-subtle);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
 }
 
 .placeholderIcon {
@@ -81,7 +87,7 @@
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-sm);
-  padding-top: var(--space-sm);
+  padding-top: var(--space-md);
   border-top: 1px solid var(--border);
 }
 
@@ -98,4 +104,13 @@
 
 .link:hover {
   color: var(--accent);
+}
+
+.privateNote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 }

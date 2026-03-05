@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiLock } from "react-icons/fi";
 import styles from "./ProjectCard.module.css";
 
 export default function ProjectCard({ project, index = 0 }) {
@@ -14,11 +15,21 @@ export default function ProjectCard({ project, index = 0 }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
     >
-      {/* Thumbnail placeholder */}
+      {/* Thumbnail */}
       <div className={styles.thumbnail}>
-        <span className={styles.placeholderIcon}>
-          {project.title.charAt(0)}
-        </span>
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
+            className={styles.image}
+          />
+        ) : (
+          <span className={styles.placeholderIcon}>
+            {project.title.charAt(0)}
+          </span>
+        )}
       </div>
 
       <div className={styles.content}>
@@ -37,7 +48,7 @@ export default function ProjectCard({ project, index = 0 }) {
         </div>
 
         <div className={styles.links}>
-          {project.repoUrl && (
+          {project.repoUrl ? (
             <a
               href={project.repoUrl}
               target="_blank"
@@ -48,6 +59,11 @@ export default function ProjectCard({ project, index = 0 }) {
               <FiGithub size={16} />
               <span>Code</span>
             </a>
+          ) : (
+            <span className={styles.privateNote}>
+              <FiLock size={14} />
+              <span>Private · Available on request</span>
+            </span>
           )}
           {project.liveUrl && (
             <a

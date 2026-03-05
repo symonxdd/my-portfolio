@@ -44,14 +44,25 @@
 }
 
 .thumbnail {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 280px;
   background: var(--accent-subtle);
-  border-radius: var(--radius-lg);
+  border-radius: 8px;
   border: 1px solid var(--border);
   margin-bottom: var(--space-xl);
+  overflow: hidden;
+}
+
+.thumbnail:not(:has(.image)) {
+  height: 280px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .placeholderIcon {
@@ -73,8 +84,41 @@
   line-height: 1.8;
 }
 
+.motivation {
+  padding-left: var(--space-lg);
+  border-left: 3px solid var(--accent);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.motivationText {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.motivationText + .motivationText {
+  margin-top: var(--space-md);
+}
+
 .actions {
   display: flex;
   gap: var(--space-md);
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.privateNote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-style: italic;
 }

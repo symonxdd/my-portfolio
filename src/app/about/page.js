@@ -7,8 +7,6 @@ import { skills } from "@/data/skills";
 import styles from "./page.module.css";
 
 export default function AboutPage() {
-  let chipIndex = 0;
-
   return (
     <div className={styles.page}>
       {/* ---- Bio ---- */}
@@ -75,10 +73,9 @@ export default function AboutPage() {
               <div className={styles.skillContent}>
                 <h3 className={styles.skillCategory}>{group.category}</h3>
                 <div className={styles.chips}>
-                  {group.items.map((item) => {
-                    const idx = chipIndex++;
-                    return <SkillChip key={item} label={item} index={idx} />;
-                  })}
+                  {group.items.map((item, idx) => (
+                    <SkillChip key={item} label={item} index={idx} />
+                  ))}
                 </div>
               </div>
             </div>
