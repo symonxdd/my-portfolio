@@ -10,22 +10,53 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle, loading, success, error
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Build mailto link with form data
-    const subject = encodeURIComponent(
-      `Portfolio Contact from ${formData.name}`
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
-    window.location.href = `mailto:symon@example.com?subject=${subject}&body=${body}`;
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setErrorMessage(data.error || "Something went wrong. Please try again.");
+        setStatus("error");
+      }
+    } catch (err) {
+      setErrorMessage("Failed to send message. Please check your connection.");
+      setStatus("error");
+    }
   };
+
+  if (status === "success") {
+    return (
+      <div className={styles.successMessage}>
+        <h3>Thanks for reaching out!</h3>
+        <p>Your message has been sent. I&apos;ll get back to you soon.</p>
+        <Button onClick={() => setStatus("idle")} variant="secondary">
+          Send another message
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -42,6 +73,7 @@ export default function ContactForm() {
           placeholder="Your name"
           value={formData.name}
           onChange={handleChange}
+          disabled={status === "loading"}
         />
       </div>
 
@@ -58,6 +90,7 @@ export default function ContactForm() {
           placeholder="you@example.com"
           value={formData.email}
           onChange={handleChange}
+          disabled={status === "loading"}
         />
       </div>
 
@@ -74,11 +107,16 @@ export default function ContactForm() {
           placeholder="Your message…"
           value={formData.message}
           onChange={handleChange}
+          disabled={status === "loading"}
         />
       </div>
 
-      <Button type="submit" variant="primary">
-        Send Message
+      {status === "error" && (
+        <p className={styles.errorText}>{errorMessage}</p>
+      )}
+
+      <Button type="submit" variant="primary" disabled={status === "loading"}>
+        {status === "loading" ? "Sending..." : "Send Message"}
       </Button>
     </form>
   );
