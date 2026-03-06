@@ -24,9 +24,9 @@
   transform: translateX(-50%);
   background: var(--accent);
   color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
   font-weight: 500;
   white-space: nowrap;
   pointer-events: none;
@@ -34,9 +34,10 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+.socialIcon:hover .tooltip,
 .tooltip.visible {
   opacity: 1;
-  transform: translateX(-50%) translateY(-4px);
+  transform: translateX(-50%) translateY(-6px);
 }
 
 .tooltip::after {

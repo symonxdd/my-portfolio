@@ -41,7 +41,7 @@ export default function SocialIcon({ name, url, icon, size = 20 }) {
         <Icon size={size} />
         {isEmail && (
           <span className={`${styles.tooltip} ${copied ? styles.visible : ""}`}>
-            Copied!
+            {copied ? "Copied!" : "Copy email"}
           </span>
         )}
       </Component>
