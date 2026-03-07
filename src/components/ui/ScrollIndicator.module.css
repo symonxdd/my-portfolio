@@ -1,0 +1,40 @@
+.indicator {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid var(--text-secondary);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  opacity: 0.5;
+}
+
+.wheel {
+  width: 2px;
+  height: 6px;
+  background: var(--text-secondary);
+  border-radius: 1px;
+}
+
+@media (max-width: 640px) {
+  .indicator {
+    bottom: var(--space-lg);
+  }
+
+  .mouse {
+    width: 20px;
+    height: 32px;
+  }
+}

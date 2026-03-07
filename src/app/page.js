@@ -6,6 +6,7 @@ import { FiArrowRight, FiDownload } from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import ProjectCard from "@/components/ui/ProjectCard";
 import SocialIcons from "@/components/ui/SocialIcons";
+import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { featuredProjects } from "@/data/projects";
 import styles from "./page.module.css";
 
@@ -27,7 +28,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Hi, I&apos;m
+            Hey, I&apos;m
           </motion.p>
 
           <motion.h1
@@ -45,7 +46,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Full-Stack Developer crafting modern web experiences.
+            Full-stack developer who builds for web & beyond.
           </motion.p>
 
           <motion.div
@@ -70,6 +71,8 @@ export default function Home() {
             <SocialIcons />
           </motion.div>
         </div>
+
+        <ScrollIndicator />
       </section>
 
       {/* ——— Featured Projects ——— */}
