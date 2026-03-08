@@ -39,12 +39,63 @@
   color: var(--text-primary);
 }
 
+.taglineSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 680px;
+}
+
 .tagline {
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+}
+
+.emphasized {
+  display: inline-block;
+  position: relative;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 0 4px;
+}
+
+.emphasized::after {
+  content: "";
+  position: absolute;
+  bottom: 0.1em;
+  left: 0;
+  width: 100%;
+  height: 0.4em;
+  background: var(--accent);
+  opacity: 0.15;
+  z-index: -1;
+  border-radius: 2px;
+  transform: rotate(-1.5deg);
+}
+
+.clarificationWrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.clarification {
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--text-secondary);
-  max-width: 540px;
-  line-height: 1.7;
-  margin-top: var(--space-sm);
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.clarification em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-secondary);
 }
 
 .ctas {
@@ -93,7 +144,7 @@
 .section {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--space-4xl) var(--section-padding-x);
+  padding: var(--space-xl) var(--section-padding-x) var(--space-4xl);
 }
 
 .sectionHeader {

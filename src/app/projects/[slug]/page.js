@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiArrowLeft, FiExternalLink, FiGithub, FiLock } from "react-icons/fi";
+import { FiArrowLeft, FiExternalLink, FiGithub, FiLock, FiDownload } from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import { projects } from "@/data/projects";
 import styles from "./page.module.css";
@@ -108,9 +108,14 @@ export default function ProjectDetailPage() {
               Private repo · Available on request
             </span>
           )}
-          {project.liveUrl && (
-            <Button href={project.liveUrl}>
-              <FiExternalLink size={16} /> Live Demo
+          {project.siteUrl && project.siteLabel && (
+            <Button href={project.siteUrl}>
+              <FiExternalLink size={16} /> {project.siteLabel}
+            </Button>
+          )}
+          {project.downloadUrl && project.downloadLabel && (
+            <Button href={project.downloadUrl}>
+              <FiDownload size={16} /> {project.downloadLabel}
             </Button>
           )}
         </div>

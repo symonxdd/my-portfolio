@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiExternalLink, FiGithub, FiLock } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiLock, FiDownload } from "react-icons/fi";
 import styles from "./ProjectCard.module.css";
 
 export default function ProjectCard({ project, index = 0 }) {
@@ -65,16 +65,28 @@ export default function ProjectCard({ project, index = 0 }) {
               <span>Private · Available on request</span>
             </span>
           )}
-          {project.liveUrl && (
+          {project.siteUrl && project.siteLabel && (
             <a
-              href={project.liveUrl}
+              href={project.siteUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
-              aria-label={`${project.title} live demo`}
+              aria-label={`${project.title} ${project.siteLabel}`}
             >
               <FiExternalLink size={16} />
-              <span>Demo</span>
+              <span>{project.siteLabel}</span>
+            </a>
+          )}
+          {project.downloadUrl && project.downloadLabel && (
+            <a
+              href={project.downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+              aria-label={`${project.title} ${project.downloadLabel}`}
+            >
+              <FiDownload size={16} />
+              <span>{project.downloadLabel}</span>
             </a>
           )}
         </div>

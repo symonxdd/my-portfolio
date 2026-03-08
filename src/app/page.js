@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { FiArrowRight, FiDownload } from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import ProjectCard from "@/components/ui/ProjectCard";
@@ -11,6 +12,17 @@ import { featuredProjects } from "@/data/projects";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [showClarification, setShowClarification] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 20) {
+      setShowClarification(true);
+    } else {
+      setShowClarification(false);
+    }
+  });
+
   return (
     <>
       {/* ——— Hero ——— */}
@@ -28,7 +40,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Hey, I&apos;m
+            Sup gang, I&apos;m
           </motion.p>
 
           <motion.h1
@@ -40,14 +52,34 @@ export default function Home() {
             Symon
           </motion.h1>
 
-          <motion.p
-            className={styles.tagline}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Full-stack developer who builds for web & beyond.
-          </motion.p>
+          <div className={styles.taglineSection}>
+            <p className={styles.tagline}>
+              I build{" "}
+              <motion.span
+                className={styles.emphasized}
+                animate={{ rotate: [-0.5, 0.5, -0.5] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                everything
+              </motion.span>{" "}
+              with ChatGPT.
+            </p>
+
+            <motion.div
+              className={styles.clarificationWrapper}
+              initial={false}
+              animate={{
+                height: showClarification ? "auto" : 0,
+                opacity: showClarification ? 1 : 0,
+                marginTop: showClarification ? 12 : 0
+              }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <p className={styles.clarification}>
+                ...okay, maybe not <em>everything</em>. But I do know how to prompt my way out of any problem, ship fast, and occasionally, I actually understand what the code does.
+              </p>
+            </motion.div>
+          </div>
 
           <motion.div
             className={styles.ctas}
