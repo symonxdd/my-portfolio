@@ -14,6 +14,7 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const [showClarification, setShowClarification] = useState(false);
+  const [isHoveringEverything, setIsHoveringEverything] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -64,9 +65,47 @@ export default function Home() {
               <motion.span
                 className={styles.emphasized}
                 animate={{ rotate: [-0.5, 0.5, -0.5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.05, rotate: 0 }}
+                onMouseEnter={() => setIsHoveringEverything(true)}
+                onMouseLeave={() => setIsHoveringEverything(false)}
+                transition={{
+                  rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                  scale: { duration: 0.2 }
+                }}
               >
                 everything
+                <AnimatePresence>
+                  {isHoveringEverything && (
+                    <span className={styles.sparkleContainer}>
+                      {[...Array(6)].map((_, i) => (
+                        <motion.span
+                          key={i}
+                          className={styles.sparkleParticle}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{
+                            opacity: [0, 1, 0],
+                            scale: [0, 1.2, 0],
+                            y: -20,
+                            x: (i % 2 === 0 ? 1 : -1) * 10
+                          }}
+                          exit={{ opacity: 0 }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            delay: i * 0.2,
+                            ease: "easeOut"
+                          }}
+                          style={{
+                            left: `${(i + 1) * 15}%`,
+                            top: "50%",
+                            width: i % 2 === 0 ? 3 : 2,
+                            height: i % 2 === 0 ? 3 : 2,
+                          }}
+                        />
+                      ))}
+                    </span>
+                  )}
+                </AnimatePresence>
               </motion.span>{" "}
               with ChatGPT.
             </p>
