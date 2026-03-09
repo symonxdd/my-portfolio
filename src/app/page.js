@@ -7,6 +7,7 @@ import { FiArrowRight, FiDownload } from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import ProjectCard from "@/components/ui/ProjectCard";
 import SocialIcons from "@/components/ui/SocialIcons";
+import StatusBadge from "@/components/ui/StatusBadge";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { featuredProjects } from "@/data/projects";
 import styles from "./page.module.css";
@@ -31,6 +32,11 @@ export default function Home() {
         <div className={styles.blobContainer} aria-hidden="true">
           <div className={`${styles.blob} ${styles.blob1}`} />
           <div className={`${styles.blob} ${styles.blob2}`} />
+        </div>
+
+
+        <div className={styles.statusBadgeWrapper}>
+          <StatusBadge />
         </div>
 
         <div className={styles.heroContent}>
