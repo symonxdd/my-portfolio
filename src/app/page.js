@@ -107,7 +107,7 @@ export default function Home() {
                   )}
                 </AnimatePresence>
               </motion.span>{" "}
-              with ChatGPT.
+              with Artificial Intelligence.
             </p>
 
             <motion.div

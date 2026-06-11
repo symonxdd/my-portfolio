@@ -59,6 +59,12 @@
   height: 280px;
 }
 
+.thumbnail.compact {
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .image {
   width: 100%;
   height: auto;
@@ -82,6 +88,104 @@
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.8;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-md);
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 960 / 2079;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--accent-subtle);
+  padding: 0;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.galleryItem:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.galleryImage {
+  object-fit: cover;
+}
+
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  padding: var(--space-xl);
+}
+
+.lightboxImageWrapper {
+  position: relative;
+  max-height: 90vh;
+  max-width: 90vw;
+}
+
+.lightboxImage {
+  max-height: 90vh;
+  max-width: 90vw;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: var(--space-sm);
+  display: flex;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.lightboxClose:hover {
+  opacity: 1;
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: var(--space-sm);
+  display: flex;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+  z-index: 1001;
+}
+
+.lightboxNav:hover {
+  opacity: 1;
+}
+
+.lightboxPrev {
+  left: var(--space-lg);
+}
+
+.lightboxNext {
+  right: var(--space-lg);
 }
 
 .motivation {

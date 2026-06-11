@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiExternalLink, FiGithub, FiLock, FiDownload } from "react-icons/fi";
 import styles from "./ProjectCard.module.css";
+import DynamicDownload from "./DynamicDownload";
 
 export default function ProjectCard({ project, index = 0 }) {
   return (
@@ -78,16 +79,10 @@ export default function ProjectCard({ project, index = 0 }) {
             </a>
           )}
           {project.downloadUrl && project.downloadLabel && (
-            <a
-              href={project.downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <DynamicDownload
+              project={project}
               className={styles.link}
-              aria-label={`${project.title} ${project.downloadLabel}`}
-            >
-              <FiDownload size={16} />
-              <span>{project.downloadLabel}</span>
-            </a>
+            />
           )}
         </div>
       </div>
