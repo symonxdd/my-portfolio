@@ -37,7 +37,7 @@ export default function AboutPage() {
           <p className={styles.bio}>
             I&apos;m a full-stack developer with a passion for building clean,
             performant, and user-friendly web applications. I enjoy working
-            across the entire stack — from crafting pixel-perfect UIs to
+            across the entire stack, from crafting pixel-perfect UIs to
             designing scalable backend architectures.
           </p>
           <p className={styles.bio}>

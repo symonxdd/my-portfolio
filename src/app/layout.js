@@ -17,11 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Symon — IT Portfolio",
+  title: "Symon - IT Portfolio",
   description:
     "Personal IT portfolio showcasing projects, skills, and experience. Full-stack developer passionate about building modern web applications.",
   openGraph: {
-    title: "Symon — IT Portfolio",
+    title: "Symon - IT Portfolio",
     description:
       "Personal IT portfolio showcasing projects, skills, and experience.",
     type: "website",
