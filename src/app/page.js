@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FiArrowRight, FiDownload } from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import ProjectCard from "@/components/ui/ProjectCard";
@@ -12,10 +12,21 @@ import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { featuredProjects } from "@/data/projects";
 import styles from "./page.module.css";
 
+function getTimeBasedGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
+}
+
 export default function Home() {
   const [showClarification, setShowClarification] = useState(false);
-  const [isHoveringEverything, setIsHoveringEverything] = useState(false);
+  const [greeting, setGreeting] = useState("Hi there");
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    setGreeting(getTimeBasedGreeting());
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 20) {
@@ -27,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ——— Hero ——— */}
+      {/* Hero */}
       <section className={styles.hero}>
         {/* Background blobs */}
         <div className={styles.blobContainer} aria-hidden="true">
@@ -47,7 +58,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Sup gang, I&apos;m
+            {greeting}, I&apos;m
           </motion.p>
 
           <motion.h1
@@ -59,55 +70,18 @@ export default function Home() {
             Symon
           </motion.h1>
 
+          <motion.p
+            className={styles.portfolioLine}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            This is my portfolio
+          </motion.p>
+
           <div className={styles.taglineSection}>
             <p className={styles.tagline}>
-              I build{" "}
-              <motion.span
-                className={styles.emphasized}
-                animate={{ rotate: [-0.5, 0.5, -0.5] }}
-                whileHover={{ scale: 1.05, rotate: 0 }}
-                onMouseEnter={() => setIsHoveringEverything(true)}
-                onMouseLeave={() => setIsHoveringEverything(false)}
-                transition={{
-                  rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                  scale: { duration: 0.2 }
-                }}
-              >
-                everything
-                <AnimatePresence>
-                  {isHoveringEverything && (
-                    <span className={styles.sparkleContainer}>
-                      {[...Array(6)].map((_, i) => (
-                        <motion.span
-                          key={i}
-                          className={styles.sparkleParticle}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{
-                            opacity: [0, 1, 0],
-                            scale: [0, 1.2, 0],
-                            y: -20,
-                            x: (i % 2 === 0 ? 1 : -1) * 10
-                          }}
-                          exit={{ opacity: 0 }}
-                          transition={{
-                            duration: 1.5,
-                            repeat: Infinity,
-                            delay: i * 0.2,
-                            ease: "easeOut"
-                          }}
-                          style={{
-                            left: `${(i + 1) * 15}%`,
-                            top: "50%",
-                            width: i % 2 === 0 ? 3 : 2,
-                            height: i % 2 === 0 ? 3 : 2,
-                          }}
-                        />
-                      ))}
-                    </span>
-                  )}
-                </AnimatePresence>
-              </motion.span>{" "}
-              with Artificial Intelligence.
+              <span className={styles.emphasized}>AI-assisted</span> development is how I build.
             </p>
 
             <motion.div
@@ -121,7 +95,7 @@ export default function Home() {
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
               <p className={styles.clarification}>
-                ...okay, maybe not <em>everything</em>. But I do know how to prompt my way out of any problem, ship fast, and occasionally, I actually understand what the code does.
+                I lean heavily on Claude Code as my main AI pair programmer, with Gemini, Codex, and Cursor in the mix too. AI accelerates the work, it doesn&apos;t replace the thinking.
               </p>
             </motion.div>
           </div>
@@ -152,7 +126,7 @@ export default function Home() {
         <ScrollIndicator />
       </section>
 
-      {/* ——— Featured Projects ——— */}
+      {/* Featured Projects */}
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <motion.h2
