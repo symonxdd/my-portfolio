@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FiArrowRight, FiDownload } from "react-icons/fi";
@@ -12,21 +12,9 @@ import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { featuredProjects } from "@/data/projects";
 import styles from "./page.module.css";
 
-function getTimeBasedGreeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return "Good morning";
-  if (hour < 18) return "Good afternoon";
-  return "Good evening";
-}
-
 export default function Home() {
   const [showClarification, setShowClarification] = useState(false);
-  const [greeting, setGreeting] = useState("Hi there");
   const { scrollY } = useScroll();
-
-  useEffect(() => {
-    setGreeting(getTimeBasedGreeting());
-  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 20) {
@@ -52,22 +40,14 @@ export default function Home() {
         </div>
 
         <div className={styles.heroContent}>
-          <motion.p
-            className={styles.greeting}
+          <motion.h1
+            className={styles.nameLine}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {greeting}, I&apos;m
-          </motion.p>
-
-          <motion.h1
-            className={styles.name}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Symon
+            <span className={styles.greeting}>Hey, I&apos;m</span>{" "}
+            <span className={styles.name}>Symon</span>
           </motion.h1>
 
           <motion.p
