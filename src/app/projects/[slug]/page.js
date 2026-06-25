@@ -103,7 +103,11 @@ export default function ProjectDetailPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
-        <p className={styles.description}>{project.details}</p>
+        {project.details.split("\n\n").map((paragraph, i) => (
+          <p key={i} className={styles.description}>
+            {paragraph}
+          </p>
+        ))}
 
         {project.screenshots && project.screenshots.length > 0 && (
           <motion.div
@@ -158,7 +162,7 @@ export default function ProjectDetailPage() {
           ) : (
             <span className={styles.privateNote}>
               <FiLock size={14} />
-              Private repo · Available on request
+              {project.noRepoLabel || "Private repo · Available on request"}
             </span>
           )}
           {project.siteUrl && project.siteLabel && (
