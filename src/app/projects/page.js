@@ -23,8 +23,8 @@ export default function ProjectsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        A collection of things I&apos;ve built and worked on. This list is
-        still a work in progress, more projects are on the way.
+        A collection of things I&apos;ve built and worked on. There&apos;s
+        more I haven&apos;t added yet.
       </motion.p>
 
       <div className={styles.grid}>
