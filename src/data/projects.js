@@ -73,6 +73,17 @@ export const projects = [
     ],
     motivationTitle: "A Note on Design & My Role",
     motivation: "It's worth noting that the UI and UX shown in these screenshots were directed primarily by Depole.io's product lead and a fellow developer on the team. My role focused on the backend architecture, AWS Amplify integration, and the security research described above, rather than the interface design.\n\nGiven more ownership over the design, I would have approached several flows differently, particularly simplifying navigation and reducing visual clutter, to make the app feel cleaner and more performant. That said, working within an existing design system and codebase was valuable in itself, and it sharpened my ability to reason about security within constraints I didn't fully control.",
+  },
+  {
+    slug: "lm-plus-locator",
+    title: "LM+ Locator",
+    description: "An unofficial Flutter app for finding the nearest LM Plus office or mailbox in Belgium by GPS or address, with opening hours, distance, and one-tap directions.",
+    tags: ["Flutter", "Dart", "Mobile App", "Firebase", "Geolocation", "Android", "iOS"],
+    featured: true,
+    details: "LM+ Locator is an unofficial companion app for finding the nearest LM Plus (Liberale Mutualiteit) office or mailbox drop-off point in Belgium. Users can search by GPS or by typing an address with live autocomplete, then browse results sorted by distance with opening hours and an 'open now' status, and open any location directly in Maps with one tap.\n\nThe app is offline-first: the bundled office dataset and GPS search work with no internet connection, with an animated banner appearing when offline. It supports Dutch, French, German, and English (following the device language by default), light/dark theming, and an optional email/password account (via Firebase) that syncs saved offices to the cloud.\n\nBuilt with Flutter and Dart for a single Android/iOS codebase, using geolocator and geocoding for location handling, Nominatim (OpenStreetMap) for address search, Firebase Auth and Cloud Firestore for the optional account and favorites sync, and shared_preferences for local persistence. A Python pipeline in the repo scrapes and refreshes the bundled office dataset.",
+    repoUrl: "https://github.com/symonxdd/lm-plus-locator",
+    siteUrl: "https://symonxdd.github.io/lm-plus-locator/",
+    siteLabel: "Docs",
   }
 ];
 
