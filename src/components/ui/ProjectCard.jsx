@@ -34,9 +34,14 @@ export default function ProjectCard({ project, index = 0 }) {
       </div>
 
       <div className={styles.content}>
-        <Link href={`/projects/${project.slug}`} className={styles.titleLink}>
-          <h3 className={styles.title}>{project.title}</h3>
-        </Link>
+        <div className={styles.titleRow}>
+          <Link href={`/projects/${project.slug}`} className={styles.titleLink}>
+            <h3 className={styles.title}>{project.title}</h3>
+          </Link>
+          {project.wip && (
+            <span className={styles.wipBadge}>Work in Progress</span>
+          )}
+        </div>
 
         <p className={styles.description}>{project.description}</p>
 

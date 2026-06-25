@@ -61,6 +61,7 @@ export default function ProjectDetailPage() {
         transition={{ duration: 0.4 }}
       >
         {project.title}
+        {project.wip && <span className={styles.wipBadge}>Work in Progress</span>}
       </motion.h1>
 
       <motion.div
@@ -116,6 +117,9 @@ export default function ProjectDetailPage() {
             transition={{ duration: 0.4, delay: 0.25 }}
           >
             <h2 className={styles.sectionTitle}>Screenshots</h2>
+            {project.screenshotsNote && (
+              <p className={styles.screenshotsNote}>{project.screenshotsNote}</p>
+            )}
             <div className={styles.gallery}>
               {project.screenshots.map((src, i) => (
                 <button

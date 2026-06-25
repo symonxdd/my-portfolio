@@ -17,6 +17,8 @@
  * @property {string} [motivationTitle] - (optional) Custom heading for the motivation section (defaults to "Why I Built This")
  * @property {string[]} [screenshots] - (optional) Gallery of additional screenshots for the details page
  * @property {boolean} [compactThumbnail] - (optional) Constrain the main image width on the details page (useful for portrait screenshots)
+ * @property {boolean} [wip] - (optional) Flags the project as a work in progress, shows a "Work in Progress" badge
+ * @property {string} [screenshotsNote] - (optional) Caveat shown above the screenshots gallery (e.g. noting they're from an early prototype)
  */
 
 export const projects = [
@@ -57,7 +59,18 @@ export const projects = [
     description: "A Flutter mobile app that records piano audio and transcribes it into MIDI using on-device AI, with an immersive playback experience.",
     tags: ["Flutter", "Dart", "Mobile", "TFLite", "AI", "MIDI"],
     featured: true,
+    wip: true,
     details: "Built with Flutter, this app captures piano audio from the microphone and automatically transcribes it to MIDI using on-device machine learning via TFLite. Currently uses Spotify's Basic Pitch CNN model as a starting point, with plans to upgrade to more accurate architectures, such as Google's Onsets and Frames (a hybrid CNN-RNN model designed specifically for polyphonic piano transcription) or newer transformer-based models, which leverage self-attention mechanisms to better capture long-range musical context and temporal dependencies, yielding significantly higher transcription accuracy. Features include a live waveform display during recording, background isolate transcription, a full-featured MIDI/WAV player with mini and full-player views, a falling-notes visualizer with an interactive piano keyboard, audio format toggling, playback scrubbing, recordings management with favorites and groups, and SoundFont-based MIDI synthesis. Supports iOS and Android with light/dark theming. Work in progress, core transcription accuracy and premium features are actively being developed.",
+    image: "/images/projects/piano-transcriber/home.png",
+    compactThumbnail: true,
+    screenshots: [
+      "/images/projects/piano-transcriber/home.png",
+      "/images/projects/piano-transcriber/player.png",
+      "/images/projects/piano-transcriber/midi-view.png",
+      "/images/projects/piano-transcriber/record.png",
+      "/images/projects/piano-transcriber/settings.png",
+    ],
+    screenshotsNote: "These screenshots are from an early prototype build and don't reflect the current version. The app is actively being developed and the UI is changing fast.",
   },
   {
     slug: "qquill",
