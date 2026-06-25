@@ -12,6 +12,7 @@
  * @property {string} [downloadUrl] - (optional) Link to download or releases
  * @property {string} [downloadLabel] - (optional) Label for the download link (e.g. "Download")
  * @property {string} [repoUrl] - (optional) Link to GitHub repository
+ * @property {string} [noRepoLabel] - (optional) Override the fallback text shown when there's no repoUrl (defaults to "Private · Available on request"), for cases where the repo isn't mine to share
  * @property {string} [motivation] - (optional) "Why I Built This" section
  * @property {string} [motivationTitle] - (optional) Custom heading for the motivation section (defaults to "Why I Built This")
  * @property {string[]} [screenshots] - (optional) Gallery of additional screenshots for the details page
@@ -66,6 +67,7 @@ export const projects = [
     details: "QQuill is a React Native app developed by Adam Blvck (adamblvck.com), structuring reflection and self-knowledge around four elements, Air, Fire, Water, and Earth, similar to how DNA's four bases encode life. An AI mentor called QueQue reads your own codex of entries rather than generic internet wisdom, with elemental feeds, nested thought trees, seasonal insights, and encrypted sync keeping reflection private and sovereign.\n\nI contributed the account-syncing system, built on Google Drive, letting users back up and sync their local-first data across devices while keeping it under their own control rather than on a third-party server.",
     siteUrl: "https://qquill.app/",
     siteLabel: "Website",
+    noRepoLabel: "Third-party project, code not mine to share",
   },
   {
     slug: "epic-switcher",

@@ -63,7 +63,7 @@ export default function ProjectCard({ project, index = 0 }) {
           ) : (
             <span className={styles.privateNote}>
               <FiLock size={14} />
-              <span>Private · Available on request</span>
+              <span>{project.noRepoLabel || "Private · Available on request"}</span>
             </span>
           )}
           {project.siteUrl && project.siteLabel && (
