@@ -58,6 +58,16 @@ export const projects = [
     details: "Built with Flutter, this app captures piano audio from the microphone and automatically transcribes it to MIDI using on-device machine learning via TFLite. Currently uses Spotify's Basic Pitch CNN model as a starting point, with plans to upgrade to more accurate architectures, such as Google's Onsets and Frames (a hybrid CNN-RNN model designed specifically for polyphonic piano transcription) or newer transformer-based models, which leverage self-attention mechanisms to better capture long-range musical context and temporal dependencies, yielding significantly higher transcription accuracy. Features include a live waveform display during recording, background isolate transcription, a full-featured MIDI/WAV player with mini and full-player views, a falling-notes visualizer with an interactive piano keyboard, audio format toggling, playback scrubbing, recordings management with favorites and groups, and SoundFont-based MIDI synthesis. Supports iOS and Android with light/dark theming. Work in progress, core transcription accuracy and premium features are actively being developed.",
   },
   {
+    slug: "qquill",
+    title: "QQuill",
+    description: "A four-element reflection app organized around Air, Fire, Water, and Earth, with a local-first architecture and an AI mentor that reads your own journal entries instead of generic advice.",
+    tags: ["React Native", "Mobile App", "AI", "Google Drive", "Journaling"],
+    featured: true,
+    details: "QQuill is a React Native app developed by Adam Blvck (adamblvck.com), structuring reflection and self-knowledge around four elements, Air, Fire, Water, and Earth, similar to how DNA's four bases encode life. An AI mentor called QueQue reads your own codex of entries rather than generic internet wisdom, with elemental feeds, nested thought trees, seasonal insights, and encrypted sync keeping reflection private and sovereign.\n\nI contributed the account-syncing system, built on Google Drive, letting users back up and sync their local-first data across devices while keeping it under their own control rather than on a third-party server.",
+    siteUrl: "https://qquill.app/",
+    siteLabel: "Website",
+  },
+  {
     slug: "epic-switcher",
     title: "Epic Switcher",
     description: "A fast, minimal desktop tool for switching between Epic Games accounts with a single click, eliminating repetitive logins and 2FA friction.",
