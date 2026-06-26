@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+/docs/mobile-performance-explainer.html
 
 # debug
 npm-debug.log*
