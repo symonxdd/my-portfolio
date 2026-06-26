@@ -14,6 +14,8 @@
 }
 
 .container {
+  position: relative;
+  z-index: 101;
   display: flex;
   justify-content: center;
   max-width: var(--max-width);
@@ -51,6 +53,13 @@
 
 .logo:hover {
   background-color: var(--accent-subtle);
+}
+
+.fixedGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .separator {
@@ -102,6 +111,7 @@
 }
 
 .actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -109,11 +119,12 @@
 }
 
 .menuBtn {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
   border-radius: var(--radius-full);
   color: var(--text-primary);
   transition: background-color var(--transition-fast);
@@ -123,60 +134,70 @@
   background-color: var(--accent-subtle);
 }
 
-/* ---- Mobile Overlay ---- */
-.mobileOverlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--overlay-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 99;
+/* ---- Mobile Dropdown ----
+   Same visual treatment as .pill (frosted background, same border/shadow)
+   for visual consistency with the nav bar it hangs off of. */
+.mobileDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 100;
+  min-width: 180px;
+  padding: 8px;
+  border-radius: var(--radius-lg);
+  background-color: var(--nav-bg);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
 }
 
 .mobileNav {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: var(--space-xl);
+  gap: 2px;
 }
 
 .mobileLink {
-  font-size: 1.5rem;
-  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  transition: color var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
   text-decoration: none;
 }
 
-.mobileLink:hover,
+.mobileLink:hover {
+  background-color: var(--accent-subtle);
+  color: var(--text-primary);
+}
+
 .mobileLinkActive {
+  background-color: var(--accent-subtle);
   color: var(--accent);
+}
+
+/* Off-screen clone of the full link set, used only to measure each
+   link's natural width so we know how many fit in the real nav. */
+.measureRow {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  display: flex;
+  gap: 2px;
+  white-space: nowrap;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
-
-  .navLinks,
-  .separator {
-    display: none;
-  }
-
   .pill {
     padding: 6px 8px;
   }
 
   .logo {
     padding: 6px 12px;
-  }
-
-  .menuBtn {
-    display: flex;
-  }
-
-  .mobileOverlay {
-    display: flex;
   }
 }
