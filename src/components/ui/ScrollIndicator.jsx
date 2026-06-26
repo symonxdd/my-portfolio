@@ -9,8 +9,9 @@ export default function ScrollIndicator() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Hide once we've scrolled 80px down
-      if (window.scrollY > 80) {
+      // Hide quickly once scrolling starts, since the buttons/icons
+      // below it get close, and the next section is already visible.
+      if (window.scrollY > 24) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
@@ -24,30 +25,32 @@ export default function ScrollIndicator() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
-          className={styles.indicator}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className={styles.mouse}>
-            <motion.div
-              className={styles.wheel}
-              animate={{
-                y: [0, 16],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 2,
-                times: [0, 0.1, 0.9, 1],
-                repeat: Infinity,
-                repeatDelay: 0.5,
-                ease: "linear",
-              }}
-            />
-          </div>
-        </motion.div>
+        <div className={styles.indicatorPosition}>
+          <motion.div
+            className={styles.indicator}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className={styles.mouse}>
+              <motion.div
+                className={styles.wheel}
+                animate={{
+                  y: [0, 16],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  times: [0, 0.1, 0.9, 1],
+                  repeat: Infinity,
+                  repeatDelay: 0.5,
+                  ease: "linear",
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

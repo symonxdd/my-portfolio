@@ -1,13 +1,16 @@
-.indicator {
+.indicatorPosition {
   position: absolute;
   bottom: var(--space-xl);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10;
-  pointer-events: none;
 }
 
 .mouse {
@@ -29,7 +32,7 @@
 }
 
 @media (max-width: 640px) {
-  .indicator {
+  .indicatorPosition {
     bottom: var(--space-lg);
   }
 
